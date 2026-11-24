@@ -32,6 +32,8 @@ interface MonthlyCalendarProps {
   templates: ShiftTemplate[];
   holidays: Array<{ date: string; name: string }>;
   onRefresh: () => Promise<void>;
+  currentDate?: Date;
+  onMonthChange?: (date: Date) => void;
 }
 
 export function MonthlyCalendar({
@@ -39,8 +41,20 @@ export function MonthlyCalendar({
   templates,
   holidays,
   onRefresh,
+  currentDate: controlledDate,
+  onMonthChange,
 }: MonthlyCalendarProps) {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [internalDate, setInternalDate] = useState(new Date());
+  const currentDate = controlledDate || internalDate;
+
+  function setCurrentDate(date: Date) {
+    if (onMonthChange) {
+      onMonthChange(date);
+    } else {
+      setInternalDate(date);
+    }
+  }
+
   const [selectedDateStr, setSelectedDateStr] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
