@@ -1,0 +1,12 @@
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
+import * as schema from "./schema";
+
+const connectionString = process.env.DATABASE_URL || "";
+
+// Configuración recomendada para Supabase en serverless/Next.js
+const client = postgres(connectionString, {
+  prepare: false, // Requerido con Supabase Transaction Pooler (puerto 6543)
+});
+
+export const db = drizzle(client, { schema });
