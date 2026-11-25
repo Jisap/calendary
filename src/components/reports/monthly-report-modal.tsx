@@ -17,6 +17,7 @@ import {
 import Link from "next/link";
 import { format, parseISO, isSameMonth } from "date-fns";
 import { es } from "date-fns/locale";
+import { OvertimeCompensation } from "./overtime-compensation";
 
 interface MonthlyReportModalProps {
   isOpen: boolean;
@@ -203,6 +204,11 @@ export function MonthlyReportModal({
                 {totals.holidaysWorked} festivos / {totals.restDaysWorked} descansos
               </span>
             </div>
+          </div>
+
+          {/* Calculadora y Estimación de Horas Extras (100% Opcional y colapsable) */}
+          <div className="print:hidden">
+            <OvertimeCompensation entries={monthEntries} />
           </div>
 
           {/* Tabla Desglosada día por día */}
