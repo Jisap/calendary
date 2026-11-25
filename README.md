@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📅 Calendary — Control Inteligente de Jornadas Laborales
 
-## Getting Started
+Aplicación web progresiva (**PWA**) fullstack construida con **Next.js 16**, **TypeScript**, **Tailwind CSS v4**, **Supabase (PostgreSQL + RLS)** y **Drizzle ORM**.
 
-First, run the development server:
+Diseñada especialmente para profesionales con horarios rotativos, turnos diferenciados por días de la semana, tardes flexibles, desglose de horas extras (al entrar o salir) y cómputo de festivos y descansos trabajados.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Características Clave
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- ☀️ **Turnos Dinámicos**: Mañanas estándar (ej. Lun-Mié), mañanas especiales (ej. Jue-Vie) y tardes flexibles.
+- ⚡ **Desglose de Horas Extras**: Cálculo automático al inicio o final de la jornada con campo para justificar la causa.
+- 🛌 **Descansos y Festivos**: Detección de festivos nacionales y registro de libranzas cubiertas.
+- 📊 **Analítica & Gráficos**: Evolución visual mensual, trimestral y semestral con Recharts.
+- 📑 **Informes & Exportación**: Descarga en Excel (CSV) e impresión optimizada en PDF.
+- 💰 **Calculadora de 3 Tarifas Extras**: Estimación económica opcional para día normal, descanso y festivo.
+- 📱 **PWA Offline (Nivel 1 y 2)**: Instalable en móvil/PC como app nativa y capaz de registrar turnos sin cobertura con sincronización automática.
+- 🎨 **Temas Claro / Oscuro / Sistema**: Adaptable con transiciones fluidas.
+- 🔒 **Seguridad RLS en Supabase**: Aislamiento estricto de datos por usuario con PostgreSQL.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📖 Documentación Completa
 
-To learn more about Next.js, take a look at the following resources:
+Para consultar la guía detallada de arquitectura, modelos de datos, políticas de seguridad y manual de usuario, abre:
+👉 **[DOCUMENTATION.md](./DOCUMENTATION.md)**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 💻 Inicio Rápido
 
-## Deploy on Vercel
+1. Instalar dependencias:
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Configurar variables en `.env.local` (ver `.env.example`).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Sincronizar base de datos:
+   ```bash
+   npx drizzle-kit push
+   ```
+
+4. Iniciar servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+
+Abre en tu navegador: [http://localhost:3000](http://localhost:3000).
