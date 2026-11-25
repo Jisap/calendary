@@ -32,13 +32,15 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   // Proteger rutas: Si no hay usuario y no está en /login ni en rutas públicas, redirigir a /login
+  // Nota: La raíz ("/") es la Landing Page pública si no hay usuario, y el Dashboard si lo hay.
   const isAuthPage = request.nextUrl.pathname.startsWith("/login");
+  const isHomePage = request.nextUrl.pathname === "/";
   const isPublicAsset =
     request.nextUrl.pathname.startsWith("/_next") ||
     request.nextUrl.pathname.startsWith("/api") ||
     request.nextUrl.pathname.includes(".");
 
-  if (!user && !isAuthPage && !isPublicAsset) {
+  if (!user && !isAuthPage && !isHomePage && !isPublicAsset) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url);
