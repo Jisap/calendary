@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#312e81" />
+    </linearGradient>
+  </defs>
+  <!-- Fondo redondeado suave -->
+  <rect width="192" height="192" rx="42" fill="url(#grad)" />
+  <!-- Esfera del reloj -->
+  <circle cx="96" cy="96" r="62" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" opacity="0.95" />
+  <!-- Agujas del reloj marcando jornada laboral activa -->
+  <polyline points="96,56 96,96 126,112" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Punto central -->
+  <circle cx="96" cy="96" r="7" fill="#fbbf24" />
+</svg>
