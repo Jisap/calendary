@@ -25,7 +25,9 @@ export default function RootLayout({
           storageKey="calendary-theme"
           disableTransitionOnChange
         >
-          {children}
+          <div className="animate-page-enter min-h-screen">
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>
