@@ -12,7 +12,9 @@ import {
   Flame,
   CheckCircle2,
   AlertCircle,
+  BarChart2,
 } from "lucide-react";
+import Link from "next/link";
 import { format, parseISO, isSameMonth } from "date-fns";
 import { es } from "date-fns/locale";
 
@@ -109,6 +111,14 @@ export function MonthlyReportModal({
           </div>
 
           <div className="flex items-center gap-2">
+            <Link
+              href="/analytics"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-medium transition"
+              title="Ver análisis gráfico detallado"
+            >
+              <BarChart2 className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Ver Gráficos</span>
+            </Link>
             <button
               onClick={handleExportCSV}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 text-xs font-medium transition"

@@ -8,7 +8,8 @@ import { MonthlyReportModal } from "@/components/reports/monthly-report-modal";
 import { getWorkEntriesForRange } from "@/app/actions/work-entries";
 import { getUserShiftTemplates } from "@/app/actions/templates";
 import { logout } from "@/app/login/actions";
-import { Clock, LogOut, User, SlidersHorizontal, FileText } from "lucide-react";
+import { Clock, LogOut, User, SlidersHorizontal, FileText, BarChart2 } from "lucide-react";
+import Link from "next/link";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { format, subMonths, addMonths } from "date-fns";
 
@@ -72,6 +73,16 @@ export function DashboardClient({
           <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto justify-between sm:justify-end">
             {/* Toggle de tema Claro / Oscuro / Sistema */}
             <ThemeToggle />
+
+            {/* Enlace directo a Analítica y Gráficos */}
+            <Link
+              href="/analytics"
+              className="flex items-center gap-1.5 text-xs text-amber-700 dark:text-amber-300 hover:bg-amber-50 dark:hover:bg-amber-500/20 bg-amber-50/80 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/30 px-3.5 py-2 rounded-xl transition font-medium shadow-sm"
+              title="Ver evolución en gráficos (mes, trimestre, semestre)"
+            >
+              <BarChart2 className="w-3.5 h-3.5" />
+              <span>Gráficos</span>
+            </Link>
 
             {/* Botón de Informes y Resumen */}
             <button
