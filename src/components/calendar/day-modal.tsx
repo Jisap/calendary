@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { type WorkEntry, type ShiftTemplate } from "@/db/schema";
 import { saveWorkEntry, deleteWorkEntry } from "@/app/actions/work-entries";
 import { calculateWorkHours } from "@/lib/time-calculations";
-import { X, Clock, Trash2, Check, AlertCircle, Sparkles } from "lucide-react";
+import { enqueueOfflineEntry } from "@/lib/offline-sync";
+import { X, Clock, Trash2, Check, AlertCircle, Sparkles, WifiOff } from "lucide-react";
 import { format, parseISO } from "date-fns";
 import { es } from "date-fns/locale";
 
@@ -137,7 +138,7 @@ export function DayModal({
     setError(null);
 
     try {
-      await saveWorkEntry({
+      const entryPayload = {
         id: entry?.id,
         date: dateStr,
         shiftType,
@@ -154,10 +155,26 @@ export function DayModal({
         isHoliday,
         holidayName: isHoliday ? holidayName || entry?.holidayName || "Festivo" : null,
         notes: notes || null,
-      });
+      };
 
-      onSaved();
-      onClose();
+      // Si no hay conexión o el servidor no responde, encolar localmente
+      if (typeof navigator !== "undefined" && !navigator.onLine) {
+        enqueueOfflineEntry(entryPayload);
+        onSaved();
+        onClose();
+        return;
+      }
+
+      try {
+        await saveWorkEntry(entryPayload);
+        onSaved();
+        onClose();
+      } catch (networkOrServerError) {
+        // Fallback: si falló la red durante la petición, salvar en cola local
+        enqueueOfflineEntry(entryPayload);
+        onSaved();
+        onClose();
+      }
     } catch (err: any) {
       setError(err?.message || "Error al guardar el registro.");
     } finally {

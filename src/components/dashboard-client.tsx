@@ -5,6 +5,7 @@ import { type WorkEntry, type ShiftTemplate } from "@/db/schema";
 import { MonthlyCalendar } from "@/components/calendar/monthly-calendar";
 import { TemplatesModal } from "@/components/templates/templates-modal";
 import { MonthlyReportModal } from "@/components/reports/monthly-report-modal";
+import { SyncStatusBanner } from "@/components/sync-status-banner";
 import { getWorkEntriesForRange } from "@/app/actions/work-entries";
 import { getUserShiftTemplates } from "@/app/actions/templates";
 import { logout } from "@/app/login/actions";
@@ -118,6 +119,9 @@ export function DashboardClient({
             </form>
           </div>
         </header>
+
+        {/* Banner de estado de conexión y sincronización offline */}
+        <SyncStatusBanner onSynced={refreshEntries} />
 
         {/* Componente interactivo del Calendario */}
         <MonthlyCalendar
