@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { type WorkEntry } from "@/db/schema";
-import { DollarSign, ChevronDown, ChevronUp, Info, HelpCircle } from "lucide-react";
+import { DollarSign, ChevronDown, Info, HelpCircle } from "lucide-react";
 
 export interface OvertimeRates {
   normalRate: number; // Precio/hora extra en jornada normal
@@ -121,15 +121,19 @@ export function OvertimeCompensation({ entries }: OvertimeCompensationProps) {
               +{breakdown.grandTotal.toFixed(2)} €
             </span>
           )}
-          <div className="p-1 rounded-md text-slate-400 group-hover:text-slate-200">
-            {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          <div className="p-1 rounded-md text-slate-400 group-hover:text-slate-200 transition">
+            <ChevronDown
+              className={`w-4 h-4 transition-transform duration-300 ease-out ${
+                isOpen ? "rotate-180 text-emerald-400" : "rotate-0"
+              }`}
+            />
           </div>
         </div>
       </button>
 
-      {/* Contenido desplegable */}
+      {/* Contenido desplegable con animación fluida */}
       {isOpen && (
-        <div className="mt-4 pt-4 border-t border-slate-700/50 dark:border-slate-800 space-y-4 animate-in fade-in duration-150">
+        <div className="mt-4 pt-4 border-t border-slate-700/50 dark:border-slate-800 space-y-4 animate-accordion-expand">
           <div className="text-[11px] text-slate-400 flex items-start gap-1.5 bg-slate-800/50 p-2.5 rounded-lg border border-slate-700/40">
             <Info className="w-3.5 h-3.5 text-indigo-400 shrink-0 mt-0.5" />
             <span>
