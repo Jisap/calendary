@@ -280,7 +280,7 @@ export function MonthlyCalendar({
               <button
                 key={dateStr}
                 onClick={() => handleDayClick(dateStr)}
-                className={`min-h-[75px] sm:min-h-[92px] p-2 rounded-xl text-left border flex flex-col justify-between transition group relative ${
+                className={`min-h-[75px] sm:min-h-[92px] p-2 rounded-xl text-left border flex flex-col justify-between calendar-cell-hover group relative ${
                   !isCurrentMonth
                     ? "opacity-30 border-transparent bg-slate-100/50 dark:bg-slate-900/30 hover:opacity-60"
                     : "bg-slate-50/70 hover:bg-slate-100 dark:bg-slate-800/40 dark:hover:bg-slate-800 border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700"
